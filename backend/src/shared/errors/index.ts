@@ -1,15 +1,21 @@
+import { ValidationError as ClassValidatorError } from 'class-validator'
+
 type ApiErrorConstructor = {
   message?: string
-  status?: number
+  httpStatusCode?: number
 }
 type DerivatedErrorConstructor = {
   message?: string
 }
 
+type ValidationErrorConstructorParams = {
+  errors: ClassValidatorError[]
+} & DerivatedErrorConstructor
+
 export class ApiError extends Error {
   name: string = "ApiError"
   message: string = "Something wrong ocurred"
-  status: number = 400
+  httpStatusCode: number = 400
 
   constructor(params?: ApiErrorConstructor) {
     super()
@@ -17,15 +23,16 @@ export class ApiError extends Error {
     if (params?.message) {
       this.message = params.message
     }
-    if (params?.status) {
-      this.status = params.status
+    if (params?.httpStatusCode) {
+      this.httpStatusCode = params.httpStatusCode
     }
   }
 }
 
 export class BadRequestError extends ApiError {
   name: string = "BadRequestError"
-  
+  message: string = "Bad request"
+
   constructor(params?: DerivatedErrorConstructor) {
     super(params)
   }
@@ -33,8 +40,9 @@ export class BadRequestError extends ApiError {
 
 export class NotFoundError extends ApiError {
   name: string = "NotFoundError"
-  status: number = 404
-  
+  message: string = "Data not found"
+  httpStatusCode: number = 404
+
   constructor(params?: DerivatedErrorConstructor) {
     super(params)
   }
@@ -42,9 +50,23 @@ export class NotFoundError extends ApiError {
 
 export class UnauthorizedError extends ApiError {
   name: string = "UnauthorizedError"
-  status: number = 401
+  message: string = "Unauthorized action"
+  httpStatusCode: number = 401
 
   constructor(params?: DerivatedErrorConstructor) {
     super(params)
+  }
+}
+
+export class ValidationError extends ApiError {
+  name: string = 'ValidationError'
+  message: string = 'Data not satisfied validation'
+  httpStatusCode: number = 400
+  errors: ClassValidatorError[] = []
+
+  constructor(params: ValidationErrorConstructorParams) {
+    super(params)
+
+    this.errors = params.errors
   }
 }
