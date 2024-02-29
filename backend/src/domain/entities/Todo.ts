@@ -1,3 +1,5 @@
+import type { User } from "./User"
+
 export class Todo {
   id!: string
   createdAt!: Date
@@ -6,4 +8,6 @@ export class Todo {
   title!: string
   description?: string
   finishedAt?: Date
+
+  user!: User
 }

@@ -11,7 +11,7 @@ import type {
 	UpdateUserResponse,
 	DeleteUserParams,
 	DeleteUserResponse
-} from '../../../domain/interfaces/user';
+} from '../../../../domain/interfaces/user';
 
 export class UserRepository extends Database implements IUserRepository {
 	async getMany(params: GetManyUsersParams): GetManyUsersResponse {

@@ -1,4 +1,4 @@
-import { Todo } from "./Todo"
+import type { Todo } from "./Todo"
 
 export class User {
   id!: string
@@ -6,7 +6,7 @@ export class User {
   updatedAt!: Date
 
   email!: string
-  password?: string
+  password!: string
 
   todos?: Todo[]
 }

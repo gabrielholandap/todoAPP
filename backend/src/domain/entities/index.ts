@@ -1,2 +1,2 @@
-export * from "./User"
-export * from "./Todo"
+export type * from "./User"
+export type * from "./Todo"

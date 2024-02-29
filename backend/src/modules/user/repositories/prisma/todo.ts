@@ -11,7 +11,7 @@ import type {
 	UpdateTodoResponse,
 	DeleteTodoParams,
 	DeleteTodoResponse
-} from '../../../domain/interfaces/todo';
+} from '../../../../domain/interfaces/todo';
 
 export class TodoRepository extends Database implements ITodoRepository {
 	async getMany(params: GetManyTodosParams): GetManyTodosResponse {

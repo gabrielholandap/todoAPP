@@ -1,7 +1,7 @@
 import express from "express"
 import cors from "cors"
 
-import { CONFIG } from "./config"
+import { ENV_VARS } from "./shared/env-vars"
 import { router } from "./router"
 
 export const app = express()
@@ -12,6 +12,6 @@ app.use(cors())
 
 app.use(router)
 
-app.listen(CONFIG.port, () => {
-  console.log(`HTTP server is running on port: ${CONFIG.port}`)
+app.listen(ENV_VARS.port, () => {
+  console.log(`HTTP server is running on port: ${ENV_VARS.port}`)
 })
