@@ -1,0 +1,62 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:8.1.0
+    restart: always
+    env_file:
+      - path: "./.env.local"
+    ports:
+      - ${MYSQL_PORT}:${MYSQL_PORT}
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_TCP_PORT: ${MYSQL_PORT}
+    networks:
+      - todo_notes_application_network_dev
+    volumes:
+      - todo_notes_application_mysql_data_dev:/var/lib/mysql
+
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: ./Dockerfile.dev
+    restart: always
+    env_file:
+      - path: "./.env.local"
+    ports:
+      - ${BACKEND_PORT}:${BACKEND_PORT}
+    environment:
+      PORT: ${BACKEND_PORT}
+      DATABASE_URL: ${DATABASE_URL}
+    depends_on:
+      - mysql
+    networks:
+      - todo_notes_application_network_dev
+    volumes:
+      - ./backend:/www
+
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: ./Dockerfile.dev
+    restart: always
+    env_file:
+      - path: "./.env.local"
+    ports:
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}
+    depends_on:
+      - mysql
+      - backend
+    networks:
+      - todo_notes_application_network_dev
+    volumes:
+      - ./web-application:/www
+
+volumes:
+  todo_notes_application_mysql_data_dev:
+
+networks:
+  todo_notes_application_network_dev:
