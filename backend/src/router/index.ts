@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { errorHandler } from "../middlewares/error-handler";
+import { errorHandler } from "../shared/middlewares/error-handler";
 
 export const router = Router()
 
