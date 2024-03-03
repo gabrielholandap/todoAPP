@@ -5,6 +5,12 @@ import { authRouter } from "./auth";
 
 export const router = Router()
 
-router.use(authRouter)
+router.use("/auth", authRouter)
+
+router.get("/health", (req, res) => {
+  res.status(200).json({
+    datetime: new Date().toISOString()
+  })
+})
 
 router.use(errorHandler)
