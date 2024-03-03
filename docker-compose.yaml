@@ -4,8 +4,6 @@ services:
   mysql:
     image: mysql:8.1.0
     restart: always
-    ports:
-      - ${MYSQL_PORT}:${MYSQL_PORT}
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
@@ -20,12 +18,10 @@ services:
   backend:
     build:
       context: ./backend/
-      dockerfile: ./backend/Dockerfile
+      dockerfile: ./Dockerfile
     restart: always
-    ports:
-      - ${BACKEND_PORT}:${BACKEND_PORT}
     environment:
-      PORT: ${BACKEND_PORT}
+      BACKEND_PORT: ${BACKEND_PORT}
       DATABASE_URL: ${DATABASE_URL}
     depends_on:
       - mysql
@@ -48,11 +44,13 @@ services:
       dockerfile: ./Dockerfile
     restart: always
     ports:
-      - 8080:8080
+      - 80:80
     depends_on:
       - mysql
       - backend
       - frontend-build
+    networks:
+      - todo_notes_application_network_prd
     volumes:
       - todo_notes_application_frontend_static_files:/www/dist
 
@@ -62,3 +60,4 @@ volumes:
 
 networks:
   todo_notes_application_network_prd:
+    driver: "bridge"
