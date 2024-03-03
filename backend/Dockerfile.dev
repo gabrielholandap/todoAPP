@@ -8,6 +8,6 @@ COPY . /www
 
 RUN yarn install
 
-RUN db:generate
+RUN yarn run db:generate
 
 CMD yarn run dev

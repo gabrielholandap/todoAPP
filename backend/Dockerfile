@@ -10,6 +10,6 @@ RUN yarn install
 
 RUN yarn run build
 
-RUN db:generate
+RUN yarn run db:generate
 
 CMD yarn run start
