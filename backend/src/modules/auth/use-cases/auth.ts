@@ -120,9 +120,11 @@ export class AuthUseCases {
     }
   }
 
+  // TODO: Ignore expiration on jwt validation, verify it mannually and throw an custom error to access token expirations
   static verifyJwtAccessToken(token: string) {
     return verifyJwt(token, ENV_VARS.jwt.accessTokenSecret) as JwtPayload
   }
+  // TODO: Ignore expiration on jwt validation, verify it mannually and throw an custom error to refresh token expirations
   static verifyJwtRefreshToken(token: string) {
     return verifyJwt(token, ENV_VARS.jwt.refreshTokenSecret) as JwtPayload
   }
