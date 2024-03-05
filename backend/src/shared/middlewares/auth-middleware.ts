@@ -18,10 +18,10 @@ type OptionalAuthenticatedParams = {
   /**
    * Default value `false`
    */
-  optional: boolean
+  optional?: boolean
 }
 
-export function AuthGuard({ optional = false }: OptionalAuthenticatedParams) {
+export function AuthGuard(params?: OptionalAuthenticatedParams) {
   return function(
     target: Object,
     key: Object | Symbol,
@@ -33,14 +33,17 @@ export function AuthGuard({ optional = false }: OptionalAuthenticatedParams) {
       try {
         const authHeader = req.headers.Authorization
   
-        if (!optional && !authHeader || authHeader?.constructor !== String) {
+        const isOptional = params && !!params.optional
+        // const isOptional = params && typeof params.optional !== 'undefined' && params.optional
+
+        if (!isOptional && !authHeader || authHeader?.constructor !== String) {
           throw new UnauthorizedError({ message: "Token not provided" })
         }
   
-        if (optional && !authHeader) {
+        if (isOptional && !authHeader) {
           return await originalMethod.apply(this, [req, res, next])
         }
-  
+
         const parts = authHeader.split(" ")
   
         if (parts.length !== 2) {
