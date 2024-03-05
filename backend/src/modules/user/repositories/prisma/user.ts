@@ -35,30 +35,23 @@ export class UserRepository extends Database implements IUserRepository {
 			}
 		};
 	}
-	async getSingle({ where }: GetSingleUserParams): GetSingleUserResponse {
-		const result = await this.database.user.findFirst({ where })
+	async getSingle(params: GetSingleUserParams): GetSingleUserResponse {
+		const result = await this.database.user.findFirst(params)
 
 		return result
 	}
-	async create({ data }: CreateUserParams): CreateUserResponse {
-		const result = await this.database.user.create({
-			data
-		})
+	async create(params: CreateUserParams): CreateUserResponse {
+		const result = await this.database.user.create(params)
 
 		return result
 	}
-	async update({ where, data }: UpdateUserParams): UpdateUserResponse {
-		const result = await this.database.user.update({
-			where,
-			data
-		})
+	async update(params: UpdateUserParams): UpdateUserResponse {
+		const result = await this.database.user.update(params)
 
 		return result
 	}
-	async delete({ where }: DeleteUserParams): DeleteUserResponse {
-		const result = await this.database.user.delete({
-			where,
-		})
+	async delete(params: DeleteUserParams): DeleteUserResponse {
+		const result = await this.database.user.delete(params)
 
 		return result
 	}
