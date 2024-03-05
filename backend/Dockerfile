@@ -12,4 +12,4 @@ RUN yarn run build
 
 RUN yarn run db:generate
 
-CMD yarn run start
+CMD yarn run db:migration:up ; yarn run start

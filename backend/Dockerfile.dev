@@ -10,4 +10,4 @@ RUN yarn install
 
 RUN yarn run db:generate
 
-CMD yarn run dev
+CMD yarn run db:migration:up ; yarn run dev
