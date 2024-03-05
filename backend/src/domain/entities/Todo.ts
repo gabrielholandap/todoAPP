@@ -10,4 +10,5 @@ export class Todo {
   finishedAt?: Date
 
   user!: User
+  userId!: string
 }
