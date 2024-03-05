@@ -7,7 +7,9 @@
     "start": "node dist/app.js",
     "dev": "ts-node-dev --watch --respawn --transpile-only --ignore-watch node_modules src/app.ts",
     "build": "tsc",
-    "db:generate": "prisma generate"
+    "db:generate": "prisma generate",
+    "db:migration:new": "prisma migrate dev --name",
+    "db:migration:up": "prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^5.0.0",
