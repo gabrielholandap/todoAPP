@@ -26,7 +26,7 @@ export class AuthController {
 
 		const result = await this.authUseCases.signIn(parsedBody);
 
-		return result
+		return res.json(result)
 	}
 
 	@ExceptionsCatcher()
@@ -37,7 +37,7 @@ export class AuthController {
 
 		const result = await this.authUseCases.signUp(parsedBody);
 
-		return result
+		return res.json(result)
 	}
 
 	@ExceptionsCatcher()
@@ -48,6 +48,6 @@ export class AuthController {
 
 		const result = await this.authUseCases.refreshToken(parsedBody);
 
-		return result
+		return res.json(result)
 	}
 }
