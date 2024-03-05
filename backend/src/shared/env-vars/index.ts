@@ -2,10 +2,10 @@ import "dotenv/config"
 
 export const ENV_VARS = {
   port: process.env.BACKEND_PORT,
-  passwordSalt: "",
+  passwordSalt: process.env.PASSWORD_SALT,
   jwt: {
-    accessTokenSecret: "",
-    refreshTokenSecret: "",
+    accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
+    refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
   }
 }
 
