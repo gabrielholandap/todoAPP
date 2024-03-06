@@ -6,8 +6,7 @@ WORKDIR /www
 
 COPY . /www
 
+RUN ["chmod", "+x", "/www/run-local.sh"]
 RUN yarn install
 
-RUN yarn run db:generate
-
-CMD echo '--Sleeping 15 seconds before start --'; sleep 15 ; yarn run db:migration:up ; yarn run dev
+CMD ["sh", "/www/run-local.sh"]

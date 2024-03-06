@@ -6,10 +6,8 @@ WORKDIR /www
 
 COPY . /www
 
+RUN ["chmod", "+x", "/www/run-prd.sh"]
 RUN yarn install
-
 RUN yarn run build
 
-RUN yarn run db:generate
-
-CMD echo '--Sleeping 15 seconds before start --'; sleep 15 ; yarn run db:migration:up ; yarn run start
+CMD ["sh", "/www/run-prd.sh"]
