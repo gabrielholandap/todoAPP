@@ -4,6 +4,13 @@ import cors from "cors"
 import { ENV_VARS } from "./shared/env-vars"
 import { router } from "./router"
 
+process.on("uncaughtException", () => {
+  process.exit(1)
+})
+process.on("unhandledRejection", () => {
+  process.exit(1)
+})
+
 export const app = express()
 
 app.use(express.json())
