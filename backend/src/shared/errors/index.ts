@@ -31,30 +31,33 @@ export class ApiError extends Error {
 
 export class BadRequestError extends ApiError {
   name: string = "BadRequestError"
-  message: string = "Bad request"
 
   constructor(params?: DerivatedErrorConstructor) {
-    super(params)
+    super({
+      message: params?.message || "Bad request"
+    })
   }
 }
 
 export class NotFoundError extends ApiError {
   name: string = "NotFoundError"
-  message: string = "Data not found"
   httpStatusCode: number = 404
 
   constructor(params?: DerivatedErrorConstructor) {
-    super(params)
+    super({
+      message: params?.message || "Data not found"
+    })
   }
 }
 
 export class UnauthorizedError extends ApiError {
   name: string = "UnauthorizedError"
-  message: string = "Unauthorized action"
   httpStatusCode: number = 401
 
   constructor(params?: DerivatedErrorConstructor) {
-    super(params)
+    super({
+      message: params?.message || "Unauthorized action"
+    })
   }
 }
 
