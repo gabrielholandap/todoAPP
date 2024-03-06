@@ -31,7 +31,7 @@ export function AuthGuard(params?: OptionalAuthenticatedParams) {
 
     descriptor.value = async function (...[req, res, next]: AuthGuardDescriptorParams) {
       try {
-        const authHeader = req.headers.Authorization
+        const authHeader = req.headers.authorization
   
         const isOptional = params && !!params.optional
         // const isOptional = params && typeof params.optional !== 'undefined' && params.optional
