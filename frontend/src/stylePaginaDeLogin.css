@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+}
+
+header {
+    padding: 16px;
+    border-bottom: 1px solid grey;
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+form, .botoes{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.botoes {
+    margin-top: 5px;
+}
+
+.btn1 {
+    background-color: black;
+    color: white;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+
+}
+
+.btn2 {
+    background-color: white;
+    border: none;
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
