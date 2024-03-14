@@ -4,16 +4,16 @@
     box-sizing: border-box;
 }
 
-.container {
+.containerWebSite{
     height: 100vh;
 }
 
-header {
+.headerWebSite {
     padding: 16px;
     border-bottom: 1px solid grey;
 }
 
-main {
+.mainWebSite {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,7 +29,7 @@ h3 {
     font-size: 30px;
 }
 
-.botoes {
+.botoesWebSite {
     display: flex;
     gap: 20px;
     margin-top: 10px;
