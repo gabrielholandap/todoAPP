@@ -4,16 +4,16 @@
     box-sizing: border-box;
 }
 
-.container {
+.containerPaginaDeLogin {
     height: 100vh;
 }
 
-header {
+.headerPaginaDeLogin {
     padding: 16px;
     border-bottom: 1px solid grey;
 }
 
-main {
+.mainPaginaDeLogin {
     height: 100vh;
     display: flex;
     align-items: center;
@@ -21,13 +21,13 @@ main {
     flex-direction: column;
 }
 
-form, .botoes{
+form, .botoesPaginaDeLogin{
     display: flex;
     flex-direction: column;
     
 }
 
-.botoes {
+.botoesPaginaDeLogin {
     margin-top: 5px;
 }
 
